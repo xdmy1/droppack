@@ -370,6 +370,175 @@
     "cashReport": "Decont cash",
     "cashReportTitle": "Bani colectați pe șofer",
     "cashReportSubtitle": "Multi-valută · calcul automat după statusul «Livrat».",
-    "exportAccounting": "Export contabilitate"
+    "exportAccounting": "Export contabilitate",
+    "addedToast": "Coletul {code} a fost creat local. În versiunea live, intră instant pe lista cursei.",
+    "printToast": "Etichetă trimisă la imprimantă (demo).",
+    "archiveToast": "Coletul a fost arhivat (demo).",
+    "exportToast": "Fișier Excel pregătit (demo).",
+    "newRunToast": "Cursă programată local (demo).",
+    "archiveTitle": "Arhivează coletul?",
+    "archiveBody": "Coletul {code} va fi mutat în arhivă. Poți să-l recuperezi oricând din «Decont».",
+    "runs": {
+      "title": "Curse active",
+      "subtitle": "Câte un card pe șofer · progres în timp real.",
+      "progress": "{delivered}/{total} livrate",
+      "empty": "Niciun colet atribuit încă.",
+      "more": "alte colete"
+    },
+    "drivers": {
+      "title": "Echipa de șoferi",
+      "subtitle": "Toți șoferii activi · contact rapid + statistici.",
+      "add": "Șofer nou",
+      "assigned": "Atribuite",
+      "delivered": "Livrate",
+      "message": "Mesaj"
+    },
+    "routes": {
+      "title": "Rute",
+      "subtitle": "Câte colete pe fiecare rută activă.",
+      "add": "Rută nouă",
+      "name": "Rută",
+      "total": "Total",
+      "delivered": "Livrate",
+      "progress": "Progres"
+    },
+    "reports": {
+      "title": "Decont financiar",
+      "subtitle": "Bani colectați pe șofer, gata de export pentru contabilitate."
+    },
+    "analytics": {
+      "title": "Rapoarte și tendințe",
+      "subtitle": "Cum merge firma — pe scurt.",
+      "weekTitle": "Colete livrate · ultimele 12 zile",
+      "statusTitle": "Distribuție pe status"
+    },
+    "settings": {
+      "title": "Setări firmă",
+      "subtitle": "Adaptează aplicația la fluxul vostru.",
+      "items": {
+        "company": {
+          "title": "Date firmă",
+          "body": "Nume, IDNO, adresă fiscală, sub-domeniu propriu."
+        },
+        "team": {
+          "title": "Utilizatori și roluri",
+          "body": "Dispecer, administrator, contabil — drepturi separate."
+        },
+        "billing": {
+          "title": "Abonament",
+          "body": "Plan curent, facturi, metode de plată."
+        },
+        "notifications": {
+          "title": "Notificări",
+          "body": "Reguli pentru SMS-uri către clienți și alerte interne."
+        },
+        "branding": {
+          "title": "Brand și etichete",
+          "body": "Logo, culori, format etichete tipărite."
+        },
+        "profile": {
+          "title": "Profilul tău",
+          "body": "Email, parolă, preferințe limbă."
+        }
+      }
+    },
+    "support": {
+      "title": "Ajutor",
+      "subtitle": "Suntem la o tastă distanță.",
+      "fast": "Răspuns rapid în orele de program",
+      "email": "Pentru întrebări mai lungi sau facturi",
+      "docsTitle": "Ce intră în suport",
+      "item1": "Răspuns direct de la echipa care a făcut aplicația.",
+      "item2": "Modificări mici incluse, fără cost suplimentar.",
+      "item3": "Backup zilnic al datelor și recuperare la cerere.",
+      "item4": "Training pentru dispeceri și șoferi noi."
+    },
+    "modals": {
+      "cancel": "Anulează",
+      "close": "Închide",
+      "add": {
+        "title": "Colet nou",
+        "subtitle": "Completează datele · în versiunea live se trimite și SMS clientului.",
+        "codeHint": "Cod auto-generat",
+        "sender": "Expeditor",
+        "recipient": "Destinatar",
+        "pickup": "Adresă preluare",
+        "delivery": "Adresă livrare",
+        "phone": "Telefon destinatar",
+        "route": "Rută",
+        "driver": "Șofer",
+        "driverEmpty": "Atribui mai târziu",
+        "weight": "Greutate (kg)",
+        "currency": "Valută",
+        "cod": "Sumă ramburs",
+        "demoNote": "În versiunea live, coletul intră instant pe lista cursei și pe telefonul șoferului.",
+        "submit": "Salvează coletul"
+      },
+      "status": {
+        "title": "Schimbă status",
+        "subtitle": "Coletul {code}",
+        "apply": "Aplică"
+      },
+      "reassign": {
+        "title": "Reatribuie pe șofer",
+        "subtitle": "Coletul {code}",
+        "apply": "Atribuie"
+      },
+      "print": {
+        "title": "Etichetă tipărită",
+        "subtitle": "Cod QR + adresă · format A6, lipit pe colet.",
+        "confirm": "Tipărește"
+      },
+      "notifications": {
+        "title": "Notificări",
+        "subtitle": "Ultimele evenimente din cursă",
+        "items": [
+          {
+            "title": "Vasile a marcat «Livrat»",
+            "body": "DP-2841 · Andrei Roșca · cu poză și semnătură.",
+            "tone": "success",
+            "time": "acum 4 minute"
+          },
+          {
+            "title": "Colet nou de la Maria Cebotari",
+            "body": "DP-2848 · Chișinău → München · 5.5 kg.",
+            "tone": "info",
+            "time": "acum 12 minute"
+          },
+          {
+            "title": "Atenție — întârziere pe rută",
+            "body": "Cursa Bălți → Roma a depășit timpul estimat cu 35 min.",
+            "tone": "warn",
+            "time": "acum 1 oră"
+          },
+          {
+            "title": "Decont săptămânal pregătit",
+            "body": "Raportul cash pe săptămâna 18 este gata pentru export.",
+            "tone": "info",
+            "time": "azi · 09:00"
+          }
+        ]
+      },
+      "export": {
+        "title": "Export Excel",
+        "subtitle": "Alege ce date intră în fișier.",
+        "confirm": "Descarcă",
+        "options": {
+          "allToday": "Toate coletele de azi",
+          "deliveredOnly": "Doar livrate",
+          "byDriver": "Grupat pe șofer",
+          "cashOnly": "Doar colete cu ramburs"
+        }
+      },
+      "newRun": {
+        "title": "Cursă nouă",
+        "subtitle": "Programează o cursă pentru un șofer.",
+        "driver": "Șofer",
+        "route": "Rută",
+        "date": "Dată plecare",
+        "demoNote": "În versiunea live, șoferul primește notificare imediat după salvare.",
+        "confirm": "Programează cursa"
+      }
+    }
   }
 }

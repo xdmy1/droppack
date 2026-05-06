@@ -24,7 +24,7 @@ import {
   HelpCircle,
   LifeBuoy,
   Mail,
-  Map,
+  Map as MapIcon,
   MoreHorizontal,
   Package,
   Phone,
@@ -290,7 +290,7 @@ export function DemoApp({ locale }: { locale: string }) {
                 <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-500 ring-2 ring-white" />
               </IconBtn>
               <IconBtn aria-label="map" onClick={() => notify()}>
-                <Map className="h-4 w-4" />
+                <MapIcon className="h-4 w-4" />
               </IconBtn>
               <button
                 onClick={() => notify()}
