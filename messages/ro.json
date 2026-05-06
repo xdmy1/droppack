@@ -1,0 +1,375 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "features": "Funcționalități",
+    "how": "Cum funcționează",
+    "faq": "Întrebări",
+    "contact": "Contact",
+    "cta": "Cere ofertă",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul"
+  },
+  "hero": {
+    "eyebrow": "Software pentru transport colete și pasageri",
+    "title": "Gestionați coletele profesionist. Fără foi, fără haos.",
+    "titleRich": "Gestionați coletele profesionist. <accent>Fără foi, fără haos.</accent>",
+    "subtitle": "Aplicație completă pentru companiile de transport colete și pasageri pe rute Moldova–Europa. Birou, șoferi, clienți — toți pe aceeași pagină.",
+    "primaryCta": "Cere ofertă",
+    "secondaryCta": "Testează gratis",
+    "byline": "Sau sunați-ne direct: <strong>068 327 082</strong>",
+    "routesLabel": "Pe rutele Moldova → Europa",
+    "mockupPhone": {
+      "driver": "Vasile · șofer",
+      "title": "Coletele mele",
+      "subtitle": "Cursa Chișinău → Berlin · azi",
+      "items": [
+        { "name": "Andrei Roșca", "addr": "Hauptstr. 12, Berlin" },
+        { "name": "Elena Popa", "addr": "Karlstr. 88, Berlin" },
+        { "name": "Sergiu Bunescu", "addr": "Goethestr. 5, Berlin" }
+      ],
+      "done": "Livrat",
+      "markDelivered": "Marchează livrat",
+      "next": "Următor"
+    },
+    "mockup": {
+      "browserUrl": "app.droppack.md/colete",
+      "title": "Colete active",
+      "subtitle": "Cursa Chișinău → Berlin · 06 mai 2026",
+      "search": "Caută expeditor sau cod...",
+      "filterAll": "Toate",
+      "filterActive": "În tranzit",
+      "filterDelivered": "Livrate",
+      "columns": {
+        "code": "Cod",
+        "sender": "Expeditor",
+        "recipient": "Destinatar",
+        "route": "Rută",
+        "driver": "Șofer",
+        "status": "Status"
+      },
+      "statuses": {
+        "loaded": "Încărcat",
+        "inTransit": "În tranzit",
+        "outForDelivery": "La livrare",
+        "delivered": "Livrat",
+        "pending": "În birou"
+      },
+      "rows": [
+        {
+          "code": "DP-2841",
+          "sender": "Maria Cebotari",
+          "recipient": "Andrei Roșca",
+          "route": "Chișinău → Berlin",
+          "driver": "Vasile",
+          "status": "delivered"
+        },
+        {
+          "code": "DP-2842",
+          "sender": "Ion Lungu",
+          "recipient": "Elena Popa",
+          "route": "Bălți → Roma",
+          "driver": "Ion",
+          "status": "outForDelivery"
+        },
+        {
+          "code": "DP-2843",
+          "sender": "Familia Curcă",
+          "recipient": "Sergiu Bunescu",
+          "route": "Chișinău → Amsterdam",
+          "driver": "Vasile",
+          "status": "inTransit"
+        },
+        {
+          "code": "DP-2844",
+          "sender": "Galina Tofan",
+          "recipient": "Mihai Vrabie",
+          "route": "București → Praga",
+          "driver": "Andrei",
+          "status": "loaded"
+        },
+        {
+          "code": "DP-2845",
+          "sender": "Nicu Buburuz",
+          "recipient": "Cristina Munteanu",
+          "route": "Chișinău → Bruxelles",
+          "driver": "Andrei",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "problem": {
+    "eyebrow": "Problemele de zi cu zi",
+    "title": "Sună cunoscut?",
+    "subtitle": "Problemele zilnice ale unei firme de transport colete:",
+    "items": [
+      {
+        "title": "Evidența pe foi sau în Excel",
+        "body": "Listele se pierd, se rup, se uită în mașină. Dimineața nu mai știți câte colete ați luat ieri."
+      },
+      {
+        "title": "Telefoane non-stop de la șoferi",
+        "body": "Vă sună la fiecare 10 minute pentru adrese, telefoane de contact, sume de încasat."
+      },
+      {
+        "title": "Clienți nervoși la telefon",
+        "body": "«Unde-i coletul meu? Când ajunge?» Și voi nu aveți răspuns rapid de dat."
+      },
+      {
+        "title": "Decont confuz la sfârșit de lună",
+        "body": "Cine a livrat ce, cât a încasat, în ce monedă — totul amestecat prin caiete și mesaje."
+      }
+    ]
+  },
+  "solution": {
+    "eyebrow": "Soluția",
+    "title": "DropPack pune ordine în tot.",
+    "subtitle": "O singură aplicație pentru toată echipa voastră — birou, șoferi, clienți.",
+    "items": [
+      {
+        "title": "Panou centralizat pentru birou",
+        "body": "Toate coletele într-un singur loc. Adăugați, atribuiți șoferilor, urmăriți statusul — totul în câteva click-uri."
+      },
+      {
+        "title": "Pe telefoanele șoferilor (fără App Store)",
+        "body": "Șoferii deschid aplicația direct în browser, ca pe un site. Adaugă o singură dată un shortcut pe ecranul telefonului și o folosesc ca pe orice altă aplicație. Marchează livrările cu poză și semnătură. Nimic de instalat din App Store."
+      },
+      {
+        "title": "Atribuire rapidă pe rute și șoferi",
+        "body": "Drag & drop. Atribuiți colete pe șoferi în câteva secunde. Reorganizați ușor când planurile se schimbă."
+      },
+      {
+        "title": "Foto dovadă livrare",
+        "body": "Fiecare colet livrat are poză. Zero discuții cu clienții despre «n-am primit»."
+      },
+      {
+        "title": "Dare de seamă automată pentru cash",
+        "body": "Calculează automat câți bani a colectat fiecare șofer, în ce monedă, pe ce rută. Export în Excel pentru contabilitate."
+      },
+      {
+        "title": "Multi-monedă și multi-rută",
+        "body": "EUR, MDL, GBP — orice combinație. Rute Moldova–Italia, Moldova–Germania, intern — fără limite."
+      }
+    ]
+  },
+  "caseStudy": {
+    "title": "De la foaie la aplicație.",
+    "subtitle": "Aceeași zi, aceeași cursă — în două forme diferite.",
+    "beforeLabel": "Înainte",
+    "beforeTitle": "Foaia zilnică",
+    "beforeBody": "Scris de mână, fără căutare, fără filtre. Pierdută într-o mașină — pierdută definitiv.",
+    "beforeAlt": "Foaie de evidență a coletelor scrisă de mână",
+    "afterLabel": "Acum",
+    "afterTitle": "Aceleași colete în DropPack",
+    "afterBody": "Căutare, filtre pe șoferi și rute, export Excel, arhivare. Aceeași evidență, fără hârtie.",
+    "afterAlt": "Panoul DropPack pentru gestionarea coletelor",
+    "expand": "Mărește",
+    "close": "Închide",
+    "prev": "Anterior",
+    "next": "Următor"
+  },
+  "how": {
+    "eyebrow": "Procesul",
+    "title": "Cum începem",
+    "subtitle": "Trei pași simpli, fără bătaie de cap.",
+    "steps": [
+      {
+        "title": "Discuție 15 minute",
+        "body": "Ne sunați sau scrieți. Vă întrebăm cum lucrați acum, ce probleme aveți. Vă arătăm aplicația în acțiune."
+      },
+      {
+        "title": "Setup în 7–14 zile",
+        "body": "Vă configurăm aplicația cu rutele, valutele și fluxul vostru. Primiți acces la sub-domeniul vostru: numele-firmei.droppack.md"
+      },
+      {
+        "title": "Training echipă, sunteți live",
+        "body": "Venim sau facem call cu echipa. Învățăm dispecerul, șoferii, administratorul. Sunteți gata de operare."
+      }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Investiție",
+    "title": "Investiție simplă, returnată rapid.",
+    "cardTitle": "Setup unic + abonament lunar",
+    "headline": "O singură ofertă, croită pe firma voastră.",
+    "body1": "Costul depinde de mărimea echipei, numărul de rute, valutele folosite și funcționalitățile dorite (poze, arhivare, integrări speciale).",
+    "body2": "Pentru o firmă tipică, investiția inițială se recuperează în primele 2–3 luni doar din timpul economisit la birou.",
+    "body3": "Vă pregătim o ofertă personalizată după prima discuție — gratuit, fără obligații.",
+    "includedLabel": "Ce intră în abonament",
+    "bullets": [
+      "Panou web pentru birou + aplicație mobilă pentru șoferi",
+      "Sub-domeniu propriu (numele-firmei.droppack.md)",
+      "Backup zilnic și hosting pe servere europene",
+      "Suport direct pe WhatsApp de la echipă",
+      "Modificări mici incluse, fără cost suplimentar"
+    ],
+    "cta": "Cere ofertă personalizată"
+  },
+  "faq": {
+    "title": "Întrebări frecvente",
+    "items": [
+      {
+        "q": "Cât durează implementarea?",
+        "a": "De la prima discuție la live, între 7 și 14 zile lucrătoare, în funcție de complexitatea fluxului vostru."
+      },
+      {
+        "q": "Ce se întâmplă cu datele mele? Sunt în siguranță?",
+        "a": "Datele voastre sunt găzduite pe servere europene, criptate, cu backup zilnic. Doar voi și echipa autorizată aveți acces."
+      },
+      {
+        "q": "Pot anula oricând?",
+        "a": "Da. Abonamentul lunar se poate opri oricând, cu 30 de zile preaviz. Primiți export complet al datelor voastre."
+      },
+      {
+        "q": "Funcționează pe telefoanele șoferilor? Trebuie instalat ceva?",
+        "a": "Funcționează pe orice telefon Android sau iPhone, prin browser. Nu trebuie instalat nimic din App Store. Șoferii adaugă un shortcut pe ecran și folosesc aplicația ca pe orice altă aplicație."
+      },
+      {
+        "q": "Cine face suportul tehnic?",
+        "a": "Direct de la echipa noastră — nu un call-center anonim. Răspuns rapid pe WhatsApp, modificări mici incluse în abonament."
+      },
+      {
+        "q": "Ce se întâmplă dacă vreau o funcționalitate specifică?",
+        "a": "Discutăm. Modificările mici sunt incluse în abonament. Funcționalități mari și custom (gen integrări speciale) le facem la cerere, contra cost. Ne adaptăm la voi, nu invers."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Gata să scăpați de hârtii?",
+    "subtitle": "Discuție gratuită de 15 minute. Vă arătăm aplicația. Dacă nu vă convinge, nu se întâmplă nimic.",
+    "primary": "Cere ofertă",
+    "secondary": "Testează gratis"
+  },
+  "contact": {
+    "title": "Hai să vorbim",
+    "subtitle": "Completați formularul, vă scriem în maxim 24 de ore.",
+    "fields": {
+      "name": "Nume",
+      "namePlaceholder": "Ion Popescu",
+      "company": "Numele firmei",
+      "companyPlaceholder": "SRL Transport Express",
+      "phone": "Telefon / WhatsApp",
+      "phonePlaceholder": "+373 ...",
+      "email": "Email",
+      "emailOptional": "(opțional)",
+      "emailPlaceholder": "nume@firma.md",
+      "drivers": "Câți șoferi aveți?",
+      "driversOptions": {
+        "small": "1–3",
+        "medium": "4–10",
+        "large": "11–25",
+        "xlarge": "Peste 25"
+      },
+      "message": "Mesaj",
+      "messageOptional": "(opțional)",
+      "messagePlaceholder": "Scrieți pe scurt despre firma voastră — ce rute aveți, cum gestionați coletele acum"
+    },
+    "submit": "Trimite cererea",
+    "submitting": "Se trimite...",
+    "success": "Mulțumim! Vă contactăm în maxim 24 de ore.",
+    "error": "Ceva nu a mers. Încercați din nou sau scrieți-ne pe WhatsApp.",
+    "altLabel": "Sau direct:",
+    "altWhatsapp": "Sau scrieți-ne direct pe WhatsApp:",
+    "altEmail": "Email:",
+    "missingKey": "Formularul nu este configurat încă. Scrieți-ne pe WhatsApp sau email."
+  },
+  "footer": {
+    "tagline": "DropPack — Software pentru companii de transport colete.",
+    "navTitle": "Navigare",
+    "contactTitle": "Contact",
+    "rights": "© 2026 DropPack. Toate drepturile rezervate."
+  },
+  "common": {
+    "languageLabel": "Limba",
+    "skipToContent": "Sari la conținut"
+  },
+  "demo": {
+    "badge": "Versiune demo",
+    "title": "Panou dispecer",
+    "subtitle": "Date fictive · interacțiunile sunt dezactivate",
+    "heroTitle": "Coletele zilei",
+    "heroSubtitle": "Cursa Chișinău → Berlin · 06 mai 2026",
+    "back": "Înapoi la site",
+    "toast": "Acțiune disponibilă doar în versiunea live — aceasta este o demonstrație.",
+    "reassignToast": "Atribuire mutată local. În versiunea live, șoferul primește notificare instant.",
+    "search": "Caută cod, expeditor, destinatar...",
+    "searchEmpty": "Nimic găsit. Schimbă filtrul sau caută alt cod.",
+    "clear": "Șterge",
+    "notifications": "Notificări",
+    "filters": "Filtre",
+    "export": "Excel",
+    "newPackage": "Colet nou",
+    "unassigned": "Neatribuite",
+    "rowsCount": "{n} rezultate",
+    "online": "Sincronizat live",
+    "liveBadge": "În versiunea live",
+    "liveDescription": "Toate datele se sincronizează în timp real între birou și telefoanele șoferilor.",
+    "footerHint": "Demo static · DropPack © 2026",
+    "addRun": "Cursă nouă",
+    "dropHere": "Trage colete aici",
+    "nav": {
+      "packages": "Colete",
+      "runs": "Curse",
+      "drivers": "Șoferi",
+      "routes": "Rute",
+      "reports": "Decont",
+      "analytics": "Rapoarte",
+      "settings": "Setări",
+      "support": "Ajutor"
+    },
+    "stats": {
+      "inTransit": "În tranzit",
+      "inTransitHint": "Pe drum sau la livrare",
+      "delivered": "Livrate azi",
+      "deliveredHint": "Cu poză și semnătură",
+      "pending": "În birou",
+      "pendingHint": "Așteaptă atribuire",
+      "cash": "Cash colectat azi"
+    },
+    "tabs": {
+      "all": "Toate",
+      "pending": "În birou",
+      "active": "În tranzit",
+      "delivered": "Livrate"
+    },
+    "col": {
+      "code": "Cod",
+      "sender": "Expeditor",
+      "recipient": "Destinatar",
+      "route": "Rută",
+      "driver": "Șofer",
+      "status": "Status",
+      "deliveries": "Livrări"
+    },
+    "status": {
+      "pending": "În birou",
+      "loaded": "Încărcat",
+      "inTransit": "În tranzit",
+      "outForDelivery": "La livrare",
+      "delivered": "Livrat"
+    },
+    "packageDetail": "Detalii colet",
+    "pickup": "Preluare",
+    "delivery": "Livrare",
+    "weight": "Greutate",
+    "cod": "Ramburs",
+    "driverShort": "Șofer",
+    "proof": "Dovadă livrare",
+    "photoProof": "Foto",
+    "signature": "Semnătură",
+    "notes": "Notă",
+    "changeStatus": "Schimbă status",
+    "callRecipient": "Sună destinatarul",
+    "reassign": "Reatribuie",
+    "print": "Tipărește etichetă",
+    "archive": "Arhivează",
+    "emptyDrawer": "Selectează un colet din listă pentru detalii.",
+    "assignBoard": "Atribuire pe șoferi",
+    "assignBoardTitle": "Cursa de azi",
+    "assignBoardSubtitle": "Trage coletele între șoferi pentru a le reatribui. Drag & drop, fără bătaie de cap.",
+    "cashReport": "Decont cash",
+    "cashReportTitle": "Bani colectați pe șofer",
+    "cashReportSubtitle": "Multi-valută · calcul automat după statusul «Livrat».",
+    "exportAccounting": "Export contabilitate"
+  }
+}

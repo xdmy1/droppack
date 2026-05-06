@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-serif-display), "Iowan Old Style", "Apple Garamond",
+    Baskerville, "Times New Roman", "Droid Serif", Times, "Source Serif Pro",
+    serif;
+
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-500: #1e40af;
+  --color-brand-600: #1e3a8a;
+  --color-brand-700: #172554;
+
+  --color-accent-500: #d4a843;
+  --color-accent-600: #b88a2c;
+
+  --color-cream-50: #f8f3e6;
+  --color-cream-100: #efe6cf;
+
+  --color-success: #059669;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+    font-family: var(--font-sans);
+    color: var(--color-slate-900);
+    background-color: white;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    overflow-wrap: break-word;
+  }
+
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  .font-serif {
+    font-feature-settings: "ss01" on, "kern" on;
+  }
+}
+
+@layer utilities {
+  .container-pad {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-pad {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+@keyframes acc-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes acc-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes mockup-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.mockup-pulse {
+  animation: mockup-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes demo-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.demo-toast {
+  animation: demo-toast-in 0.18s ease-out;
+}
+
+@keyframes demo-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.demo-modal {
+  animation: demo-modal-in 0.18s ease-out;
+}
