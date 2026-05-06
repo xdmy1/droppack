@@ -143,8 +143,8 @@
         "body": "Fiecare colet livrat are poză. Zero discuții cu clienții despre «n-am primit»."
       },
       {
-        "title": "Dare de seamă automată pentru cash",
-        "body": "Calculează automat câți bani a colectat fiecare șofer, în ce monedă, pe ce rută. Export în Excel pentru contabilitate."
+        "title": "Vedeți pe loc câți bani vă datorează fiecare șofer",
+        "body": "Când șoferul se întoarce din cursă, știți instant cât are de predat — în EUR, MDL sau GBP. Fără numărat pe foi, fără «cred că am încasat 230». Cifre clare, gata pentru contabilitate."
       },
       {
         "title": "Multi-monedă și multi-rută",
@@ -324,7 +324,8 @@
       "deliveredHint": "Cu poză și semnătură",
       "pending": "În birou",
       "pendingHint": "Așteaptă atribuire",
-      "cash": "Cash colectat azi"
+      "cash": "Vă datorează șoferii",
+      "cashHint": "Bani de predat la întoarcere"
     },
     "tabs": {
       "all": "Toate",
@@ -368,8 +369,17 @@
     "assignBoardTitle": "Cursa de azi",
     "assignBoardSubtitle": "Trage coletele între șoferi pentru a le reatribui. Drag & drop, fără bătaie de cap.",
     "cashReport": "Decont cash",
-    "cashReportTitle": "Bani colectați pe șofer",
-    "cashReportSubtitle": "Multi-valută · calcul automat după statusul «Livrat».",
+    "cashReportTitle": "Cât vă datorează fiecare șofer",
+    "cashReportSubtitle": "Când se întoarce din cursă, vedeți pe loc cât are de predat. EUR · MDL · GBP, fără numărat manual.",
+    "owesYou": "Vă datorează",
+    "settled": "Decontat",
+    "settledHint": "Cash predat",
+    "markSettled": "Marchează decontat",
+    "undoSettle": "Anulează decontarea",
+    "noOwed": "Nimic de predat",
+    "totalOwed": "Total de încasat acum",
+    "settleToast": "{name} a predat decontul. Sumele intră în registrul contabil.",
+    "undoSettleToast": "Decontarea a fost anulată — sumele revin pe șofer.",
     "exportAccounting": "Export contabilitate",
     "addedToast": "Coletul {code} a fost creat local. În versiunea live, intră instant pe lista cursei.",
     "printToast": "Etichetă trimisă la imprimantă (demo).",

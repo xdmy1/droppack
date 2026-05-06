@@ -112,6 +112,7 @@ export function DemoApp({ locale }: { locale: string }) {
   );
   const [tab, setTab] = useState<TabKey>("all");
   const [search, setSearch] = useState("");
+  const [settled, setSettled] = useState<Set<string>>(new Set());
   const [toasts, setToasts] = useState<{ id: number; text: string }[]>([]);
   const toastIdRef = useRef(0);
 
@@ -171,6 +172,23 @@ export function DemoApp({ locale }: { locale: string }) {
       );
     },
     []
+  );
+
+  const toggleSettled = useCallback(
+    (driverId: string, name: string) => {
+      setSettled((prev) => {
+        const next = new Set(prev);
+        if (next.has(driverId)) {
+          next.delete(driverId);
+          notify(t("undoSettleToast"));
+        } else {
+          next.add(driverId);
+          notify(t("settleToast", { name }));
+        }
+        return next;
+      });
+    },
+    [notify, t]
   );
 
   return (
@@ -318,6 +336,8 @@ export function DemoApp({ locale }: { locale: string }) {
               onAction={notify}
               onModal={setModal}
               onReassign={reassign}
+              settled={settled}
+              onToggleSettled={toggleSettled}
             />
           )}
 
@@ -337,7 +357,14 @@ export function DemoApp({ locale }: { locale: string }) {
 
           {view === "routes" && <RoutesView packages={packages} onAction={notify} />}
 
-          {view === "reports" && <ReportsView packages={packages} onAction={notify} />}
+          {view === "reports" && (
+            <ReportsView
+              packages={packages}
+              onAction={notify}
+              settled={settled}
+              onToggleSettled={toggleSettled}
+            />
+          )}
 
           {view === "analytics" && <AnalyticsView packages={packages} />}
 
@@ -450,6 +477,8 @@ function PackagesView({
   onAction,
   onModal,
   onReassign,
+  settled,
+  onToggleSettled,
 }: {
   packages: DemoPackage[];
   search: string;
@@ -462,6 +491,8 @@ function PackagesView({
   onAction: (msg?: string) => void;
   onModal: (m: ModalKey) => void;
   onReassign: (code: string, driverId: string | null) => void;
+  settled: Set<string>;
+  onToggleSettled: (driverId: string, name: string) => void;
 }) {
   const t = useTranslations("demo");
 
@@ -493,10 +524,17 @@ function PackagesView({
     const pending = packages.filter((p) => p.status === "pending").length;
     const cash: Record<Currency, number> = { EUR: 0, MDL: 0, GBP: 0 };
     packages.forEach((p) => {
-      if (p.status === "delivered" && p.cod > 0) cash[p.currency] += p.cod;
+      if (
+        p.status === "delivered" &&
+        p.cod > 0 &&
+        p.driverId &&
+        !settled.has(p.driverId)
+      ) {
+        cash[p.currency] += p.cod;
+      }
     });
     return { inTransit, delivered, pending, cash };
-  }, [packages]);
+  }, [packages, settled]);
 
   return (
     <>
@@ -550,7 +588,7 @@ function PackagesView({
           value={totals.pending}
           hint={t("stats.pendingHint")}
         />
-        <CashCard label={t("stats.cash")} cash={totals.cash} />
+        <CashCard label={t("stats.cash")} hint={t("stats.cashHint")} cash={totals.cash} />
       </div>
 
       <div className="flex items-center gap-2 flex-wrap">
@@ -676,7 +714,13 @@ function PackagesView({
         onModal={onModal}
       />
 
-      <CashReport packages={packages} onAction={onAction} onModal={onModal} />
+      <CashReport
+        packages={packages}
+        onAction={onAction}
+        onModal={onModal}
+        settled={settled}
+        onToggleSettled={onToggleSettled}
+      />
     </>
   );
 }
@@ -963,9 +1007,13 @@ function RoutesView({
 function ReportsView({
   packages,
   onAction,
+  settled,
+  onToggleSettled,
 }: {
   packages: DemoPackage[];
   onAction: (msg?: string) => void;
+  settled: Set<string>;
+  onToggleSettled: (driverId: string, name: string) => void;
 }) {
   const t = useTranslations("demo");
   return (
@@ -979,7 +1027,13 @@ function ReportsView({
         </h1>
         <p className="mt-1 text-sm text-slate-600">{t("reports.subtitle")}</p>
       </div>
-      <CashReport packages={packages} onAction={onAction} onModal={() => onAction()} />
+      <CashReport
+        packages={packages}
+        onAction={onAction}
+        onModal={() => onAction()}
+        settled={settled}
+        onToggleSettled={onToggleSettled}
+      />
     </>
   );
 }
@@ -1270,9 +1324,11 @@ function StatCard({
 
 function CashCard({
   label,
+  hint,
   cash,
 }: {
   label: string;
+  hint?: string;
   cash: Record<Currency, number>;
 }) {
   const formatters: Record<Currency, Intl.NumberFormat> = {
@@ -1284,22 +1340,27 @@ function CashCard({
     .map((c) => [c, cash[c]] as const)
     .filter(([, v]) => v > 0);
   return (
-    <div className="rounded-xl bg-white ring-1 ring-stone-200 p-4 flex items-start gap-3">
-      <div className="h-9 w-9 rounded-lg bg-stone-900 text-white flex items-center justify-center">
+    <div className="rounded-xl bg-slate-900 text-white p-4 flex items-start gap-3">
+      <div className="h-9 w-9 rounded-lg bg-white/10 ring-1 ring-white/15 flex items-center justify-center">
         <Banknote className="h-4 w-4" />
       </div>
       <div className="min-w-0">
-        <div className="text-xs font-medium text-stone-500">{label}</div>
-        <div className="text-2xl font-semibold text-slate-900 leading-tight mt-0.5 truncate">
+        <div className="text-xs font-medium text-white/70">{label}</div>
+        <div className="text-2xl font-semibold leading-tight mt-0.5 truncate">
           {entries.length > 0 ? formatters[entries[0][0]].format(entries[0][1]) : "—"}
         </div>
-        <div className="text-[11px] text-stone-500 mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
-          {entries.slice(1).map(([c, v]) => (
-            <span key={c} className="font-medium">
-              {formatters[c].format(v)}
-            </span>
-          ))}
-          {entries.length === 0 && <span>—</span>}
+        <div className="text-[11px] text-white/60 mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
+          {entries.slice(1).length > 0 ? (
+            entries.slice(1).map(([c, v]) => (
+              <span key={c} className="font-medium">
+                {formatters[c].format(v)}
+              </span>
+            ))
+          ) : hint ? (
+            <span>{hint}</span>
+          ) : (
+            <span>—</span>
+          )}
         </div>
       </div>
     </div>
@@ -1687,10 +1748,14 @@ function AssignBoard({
 function CashReport({
   packages,
   onModal,
+  settled,
+  onToggleSettled,
 }: {
   packages: DemoPackage[];
   onAction: (msg?: string) => void;
   onModal: (m: ModalKey) => void;
+  settled: Set<string>;
+  onToggleSettled: (driverId: string, name: string) => void;
 }) {
   const t = useTranslations("demo");
 
@@ -1704,82 +1769,159 @@ function CashReport({
           totals[p.currency] += p.cod;
           count += 1;
         });
-      return { driver: d, totals, count };
+      return { driver: d, totals, count, isSettled: settled.has(d.id) };
     });
-  }, [packages]);
+  }, [packages, settled]);
+
+  const grandTotals = useMemo(() => {
+    const t: Record<Currency, number> = { EUR: 0, MDL: 0, GBP: 0 };
+    rows.forEach((r) => {
+      if (r.isSettled) return;
+      (Object.keys(r.totals) as Currency[]).forEach((c) => {
+        t[c] += r.totals[c];
+      });
+    });
+    return t;
+  }, [rows]);
+
+  const grandEntries = (Object.keys(grandTotals) as Currency[])
+    .map((c) => [c, grandTotals[c]] as const)
+    .filter(([, v]) => v > 0);
 
   const fmt = (currency: Currency, value: number) =>
-    value > 0
-      ? new Intl.NumberFormat("ro-MD", {
-          style: "currency",
-          currency,
-          maximumFractionDigits: 0,
-        }).format(value)
-      : "—";
+    new Intl.NumberFormat("ro-MD", {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(value);
 
   return (
-    <section className="rounded-xl bg-white ring-1 ring-stone-200">
-      <div className="px-5 py-4 border-b border-stone-200 flex items-start gap-3">
-        <div>
+    <section className="rounded-xl bg-white ring-1 ring-stone-200 overflow-hidden">
+      <div className="px-5 py-4 border-b border-stone-200 flex items-start gap-3 flex-wrap">
+        <div className="min-w-0 flex-1">
           <div className="text-[11px] uppercase tracking-[0.12em] font-semibold text-stone-500">
             {t("cashReport")}
           </div>
           <h2 className="mt-1 font-serif font-medium text-lg text-slate-900">
             {t("cashReportTitle")}
           </h2>
-          <p className="text-sm text-stone-500 mt-0.5">{t("cashReportSubtitle")}</p>
+          <p className="text-sm text-stone-500 mt-0.5 max-w-2xl">
+            {t("cashReportSubtitle")}
+          </p>
         </div>
         <button
           onClick={() => onModal("export")}
-          className="ml-auto inline-flex items-center gap-1.5 h-8 px-3 rounded-lg ring-1 ring-stone-200 bg-white hover:bg-stone-50 text-xs font-medium text-slate-700"
+          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-lg ring-1 ring-stone-200 bg-white hover:bg-stone-50 text-xs font-medium text-slate-700"
         >
           <Download className="h-3.5 w-3.5" />
           {t("exportAccounting")}
         </button>
       </div>
 
-      <table className="w-full text-sm">
-        <thead className="bg-stone-50 text-stone-500">
-          <tr>
-            <Th>{t("col.driver")}</Th>
-            <Th className="hidden md:table-cell">{t("col.deliveries")}</Th>
-            <Th className="text-right">EUR</Th>
-            <Th className="text-right">MDL</Th>
-            <Th className="text-right">GBP</Th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-stone-100">
-          {rows.map((r) => (
-            <tr key={r.driver.id}>
-              <Td>
-                <div className="flex items-center gap-2.5">
-                  <span className="h-7 w-7 rounded-full bg-stone-900 text-white text-[11px] font-semibold flex items-center justify-center">
-                    {r.driver.initials}
-                  </span>
-                  <div className="min-w-0">
-                    <div className="font-medium text-slate-900 truncate">
-                      {r.driver.name}
-                    </div>
-                    <div className="text-[11px] text-stone-500 truncate">
-                      {r.driver.route}
-                    </div>
-                  </div>
+      <div className="bg-slate-900 text-white px-5 py-5 flex items-baseline gap-4 flex-wrap">
+        <div>
+          <div className="text-[11px] uppercase tracking-[0.18em] font-semibold text-white/60">
+            {t("totalOwed")}
+          </div>
+          <div className="mt-1 font-serif font-medium text-2xl sm:text-3xl leading-none">
+            {grandEntries.length > 0 ? fmt(grandEntries[0][0], grandEntries[0][1]) : "—"}
+          </div>
+        </div>
+        {grandEntries.slice(1).length > 0 && (
+          <div className="flex items-baseline gap-3 text-white/80">
+            {grandEntries.slice(1).map(([c, v]) => (
+              <span key={c} className="font-serif text-xl">
+                +{" "}
+                <span className="font-medium">{fmt(c, v)}</span>
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <ul className="divide-y divide-stone-100">
+        {rows.map((r) => {
+          const entries = (Object.keys(r.totals) as Currency[])
+            .map((c) => [c, r.totals[c]] as const)
+            .filter(([, v]) => v > 0);
+          const hasOwed = entries.length > 0;
+          return (
+            <li key={r.driver.id} className="px-5 py-4 flex items-center gap-4 flex-wrap">
+              <span
+                className={cn(
+                  "h-10 w-10 rounded-full text-white text-sm font-semibold flex items-center justify-center shrink-0",
+                  r.isSettled ? "bg-emerald-600" : "bg-slate-900"
+                )}
+              >
+                {r.isSettled ? <Check className="h-4 w-4" /> : r.driver.initials}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="text-sm font-semibold text-slate-900 truncate">
+                  {r.driver.name}
                 </div>
-              </Td>
-              <Td className="hidden md:table-cell text-slate-700">{r.count}</Td>
-              <Td className="text-right font-mono text-slate-900">
-                {fmt("EUR", r.totals.EUR)}
-              </Td>
-              <Td className="text-right font-mono text-slate-900">
-                {fmt("MDL", r.totals.MDL)}
-              </Td>
-              <Td className="text-right font-mono text-slate-900">
-                {fmt("GBP", r.totals.GBP)}
-              </Td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                <div className="text-[11px] text-stone-500 truncate">
+                  {r.driver.route} · {r.count} {t("col.deliveries").toLowerCase()}
+                </div>
+              </div>
+
+              <div className="text-right">
+                <div className="text-[10px] uppercase tracking-[0.12em] font-semibold text-stone-500">
+                  {r.isSettled ? t("settled") : t("owesYou")}
+                </div>
+                {r.isSettled ? (
+                  <div className="text-base font-semibold text-emerald-700 mt-0.5">
+                    {t("settledHint")}
+                  </div>
+                ) : hasOwed ? (
+                  <div className="mt-0.5 flex items-baseline gap-2 justify-end flex-wrap">
+                    {entries.map(([c, v], i) => (
+                      <span
+                        key={c}
+                        className={cn(
+                          "font-serif font-medium",
+                          i === 0
+                            ? "text-2xl text-slate-900 leading-none"
+                            : "text-sm text-stone-500"
+                        )}
+                      >
+                        {i > 0 && <span className="mr-1 text-stone-400">+</span>}
+                        {fmt(c, v)}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-sm text-stone-400 italic mt-0.5">
+                    {t("noOwed")}
+                  </div>
+                )}
+              </div>
+
+              <button
+                onClick={() => onToggleSettled(r.driver.id, r.driver.name)}
+                disabled={!hasOwed && !r.isSettled}
+                className={cn(
+                  "inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg text-xs font-semibold transition-colors shrink-0 disabled:opacity-40 disabled:cursor-not-allowed",
+                  r.isSettled
+                    ? "ring-1 ring-stone-200 bg-white hover:bg-stone-50 text-slate-700"
+                    : "bg-slate-900 hover:bg-slate-800 text-white"
+                )}
+              >
+                {r.isSettled ? (
+                  <>
+                    <ArchiveRestore className="h-3.5 w-3.5" />
+                    {t("undoSettle")}
+                  </>
+                ) : (
+                  <>
+                    <Wallet className="h-3.5 w-3.5" />
+                    {t("markSettled")}
+                  </>
+                )}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
